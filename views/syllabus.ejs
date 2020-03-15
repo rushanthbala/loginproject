@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <title>syllabus page</title>
+    <style media="screen">
+      body{
+        background-color: #1abc9c; /* Green */
+        color: #ffffff;
+      }
+      .bg-1{
+        background-color: rgba(39, 74, 156, 0.3);
+      }
+
+    </style>
+  </head>
+  <body>
+
+
+    <div class="container bg-1">
+      <div class="row p-2">
+
+
+    <div class="col-8 p-2 m-auto ">
+    <% units.forEach(function (units) { %>
+
+<div class="p-2">
+  <h1 class="p-2"><%= units.title %></h2>
+    <p><%= units.description %></p>
+<iframe width="500px" height="250px" src="<%= units.urlid %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+
+      <div class="container bg-1">
+        <form class="form-control bg-1" action="/comment" method="post">
+          <input  type="hidden" name="unit_id" value="<%=units._id%>">
+          <input class="form-control" type="text" name="name" placeholder="Enter your name..">
+          <textarea class="form-control" type="text" name="comment" placeholder="Enter your comment here.."-></textarea>
+          <button type="submit" value="submit">comment</button>
+        </form>
+      </div>
+      <%if (units.comments) {%>
+        <% units.comments.forEach((comments)=>{%>
+          <p> <b><%= comments.name %></b> </p>
+          <p><%= comments.comment %></p>
+          <form action="/comment_delete" method="post">
+            <input type="hidden" name="unit_id" value="<%=units._id%>">
+            <input type="hidden" name="comment_id" value="<%=comments._id%>">
+            <button type="submit" name="button">delete</button>
+          </form>
+          <form class="form-control bg-1" action="/reply" method="post">
+            <input type="hidden" name="unit_id" value="<%=units._id%>">
+            <input type="hidden" name="comment_id" value="<%=comments._id%>">
+            <input type="text" name="name" placeholder="Enter your name">
+            <input type="text" name="reply" placeholder="Enter your reply">
+            <button type="submit" class="btn btn-dark">reply</button>
+          </form>
+          <% if (comments.replies){%>
+            <%comments.replies.forEach((reply)=>{%>
+              <div class=" bg-1 w-50">
+                <p class="lead text-dark"> <b><%= reply.name %></b> </p>
+                <p><%= reply.reply %></p>
+              </div>
+            <%})%>
+          <%}%>
+        <%})%>
+        <p></p>
+      <%}%>
+
+    <% }) %>
+</div>
+</div>
+</div>
+  </body>
+</html>

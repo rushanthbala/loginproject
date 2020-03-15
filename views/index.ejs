@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>School BAG</title>
+  <script src="app/public/js/jquery-3.2.1.js"></script>
+  <style>
+    input[type='submit'],
+    button,
+    [aria-label] {
+      cursor: pointer;
+    }
+    #spoiler {
+      display: none;
+    }
+    .head {
+      background-color: powderblue;
+      padding: 3px;
+      margin: 3px;
+      text-align: center;
+      border-radius: 3px;
+    }
+    body {
+      background-color:#ebebeb;
+    }
+    .heading {
+      font-size: 30px;
+      color:#e6e6e6;
+      font-family: Verdana;
+      padding: 0px 5px 0px 5px;
+    }
+    .jumbotron
+    {
+      background-color: #5E9FFF;
+    }
+    .adminpannel
+    {
+      font-size: 30px;
+      color:white;
+      font-family: Verdana;
+    }
+    legend
+    {
+        border-radius: 15px;
+        background-color: #003366;
+        font-size: 9.5pt;
+        Color: White;
+        padding-left:10px;
+        padding-right:10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <a href="app/public/views/at.html">at</a> -->
+  <div style="background:transparent !important" class="jumbotron">
+    <form action="javascript:void(0);" method="POST" onsubmit="addNote()">
+      <fieldset class="border pr-5 pl-5 ml-5 mr-5" style="background-color:#a6caff;">
+        <legend class="w-auto adminpannel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin Pannel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</legend>
+        <div class="jumbotron p-2">
+          <b class="heading">Title</b>
+          <div class="form-group">
+            <input class="form-control" type="text" id="add-title" placeholder="New Note Title">
+          </div>
+        </div>
+        <div class="jumbotron p-2">
+          <b class="heading">Description</b>
+          <div class="form-group">
+            <input class="form-control" type="text" id="add-body" placeholder="New Note Body">
+          </div>
+        </div>
+        <div class="jumbotron p-2">
+          <b class="heading">Subject ID</b>
+          <div class="form-group">
+            <input class="form-control" type="text" id="add-body" placeholder="New Note Body">
+          </div>
+        </div>
+        <!-- <input type="text" id="add-SubID" placeholder="New Note Body"> -->
+        <div class="jumbotron p-2">
+          <b class="heading">Subject&nbsp;&nbsp;&nbsp;</b>
+          <!-- <b>Subject ID</b> -->
+          <div class="form-group">
+            <select id="add-SubID" name="subjects">
+              <% subjects.forEach(function (subjects) { %>
+              <option value="<%= subjects.subjectid %>"><%= subjects.subject %></option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+        <div class="jumbotron p-2">
+          <b class="heading"> Unit ID</b>
+          <div class="form-group">
+            <input class="form-control" type="text" id="add-UniID" placeholder="New Note Body">
+          </div>
+        </div>
+        <div class="jumbotron p-2">
+          <b class="heading"> Tutor</b>
+          <div class="form-group">
+            <!-- <input type="text" id="add-TeachID" placeholder="New Note Body"> -->
+            <select id="add-TeachID" name="tutors">
+              <% tutors.forEach(function (tutors) { %>
+              <option value="<%= tutors.tutorid %>"><%= tutors.name %></option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+        <div class="jumbotron p-2">
+          <b class="heading">URL</b>
+          <div class="form-group">
+            <input class="form-control" type="text" id="add-URL" placeholder="New Note Body">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-secondary mb-3">Add</button>
+      </fieldset>
+    </form>
+  </div>
+  <div id="spoiler" role="aria-hidden">
+    <form action="javascript:void(0);" method="POST" onsubmit="saveEdit()">
+      <p class="head">Title</p><input type="text" id="edit-title">
+      <p class="head">Desctiption</p>
+      <input type="text" id="edit-body">
+      <p class="head">Subject Id</p>
+      <input type="text" id="edit-subID">
+      <p class="head">Unit Id</p>
+      <input type="text" id="edit-uniID">
+      <p class="head">Teacher Id</p>
+      <input type="text" id="edit-teachID">
+      <p class="head">URL Id</p>
+      <input type="text" id="edit-urlID">
+      <input type="submit" value="Edit">
+    </form>
+  </div>
+  <div id="notes">
+  </div>
+  <!-- <script src="app/public/js/script1.js"></script> -->
+  <script src="app/public/js/script2.js"></script>
+  <!-- <script src="app/public/js/script3.js"></script> -->
+</body>
+</html>
